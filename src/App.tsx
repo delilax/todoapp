@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
-import ManageSessions from '../src/components/manageSessions/ManageSessions';
+import ManageSessions from './components/ManageSessions';
+import ToDoList from './components/ToDoList';
 
 class App extends Component {
 
@@ -12,7 +13,8 @@ class App extends Component {
 
          <header className="App-header">
            TO DO LIST
-           <ManageSessions />
+           <ToDoList />
+           <ManageSessions/>
          </header>
         
       </div>
