@@ -1,3 +1,4 @@
+import {Reducer} from 'redux';
 import * as actionTypes from '../actions/actionTypes';
 
 import {SessionActions} from '../actions/sessionA';
@@ -42,7 +43,7 @@ const failureRateNumber = (state:any,action:any) =>{
     }
 }
 
-const reducer = (state:SessionState=initialState,action:SessionActions) =>{
+const reducer: Reducer<SessionState> = (state:SessionState=initialState,action:SessionActions) =>{
     switch(action.type){
         case(actionTypes.START_SESSION_SUCCESS): return startSessionSuccess(state,action);
         case(actionTypes.DELETE_SESSION_SUCCESS): return deleteSessionSuccess(state,action);
@@ -52,4 +53,4 @@ const reducer = (state:SessionState=initialState,action:SessionActions) =>{
     }
 }
 
-export default reducer;
+export {reducer as sessionReducer};
