@@ -1,20 +1,28 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import './App.css';
-import axios from 'axios';
 
 import ManageSessions from './components/ManageSessions';
 import ToDoList from './components/ToDoList';
+import { any } from 'prop-types';
 
-class App extends Component {
+interface props{
+  ManageSessions?: IManageSessions
+}
+
+export interface IManageSessions {
+}
+
+
+
+class App extends React.Component<props,any> {
 
   render() {
     return (
       <div className="App">
-
          <header className="App-header">
-           TO DO LIST
            <ToDoList />
-           <ManageSessions/>
+            <ManageSessions />
+
          </header>
         
       </div>

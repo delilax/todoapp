@@ -1,32 +1,57 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { number, string } from 'prop-types';
+import * as React from 'react';
+import {connect} from 'react-redux';
+import * as actionCreator from '../store/actions/todoA';
 
-class ToDoList extends Component {
+interface ViewProps{
+    onGetAllTodos: typeof actionCreator.getAllTodos;
+    isSessionId:string;
+    isToDos:any
 
-    componentDidMount = () =>{
-        // this.getAllToDos();
+  }
+  
+  interface ViewState{
+  }
+
+  
+class ToDoList extends React.Component<ViewProps,ViewState> {
+
+
+    componentDidUpdate = () =>{
+        console.log(this.props.isSessionId);
+        this.props.onGetAllTodos(this.props.isSessionId);
     }
 
-    // getAllToDos = () =>{
-    //     axios.get("http://localhost:9000/api/todos")
-    //     .then(response =>{
-    //         console.log(response);
-    //       })
-    //       .catch(error =>{
-    //         console.log(error);
-    //       })
-    // }
-
     render(){
+        console.log(this.props.isToDos.id);
         return(
             <div>
-                <ul id="list">
-
-                </ul>
+                {this.props.isToDos.id!=null ? <ul>
+                    {this.props.isToDos.map((todo:any) => (
+                            <li>
+                                    <div>{todo.text}</div>
+                                    <div>{todo.urgency}</div>
+                                    <div>{todo.created}</div>
+                                    <div>{todo.updated}</div>
+                            </li>
+                    ))} 
+                    </ul>
+               :null}                        
             </div>
         );
     }
 }
 
-export default ToDoList;
+const mapStateToProps = (state:any) =>{
+    return {
+        isSessionId: state.session.sessionId,
+        isToDos: state.todo.toDos
+    };
+};
+
+const mapDispatchToProps = (dispatch:any) => {
+    return{
+        onGetAllTodos: (id:string) => dispatch(actionCreator.getAllTodos(id)),
+    };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps) (ToDoList);
