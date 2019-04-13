@@ -9,6 +9,6 @@ export const enum SessionActionTypes{
 }
 
 export interface SessionState{
-    sessionId:string,
-    failure:number
+    readonly sessionId:string,
+    readonly failure:number
 }

@@ -2,11 +2,7 @@ import {Reducer} from 'redux';
 import * as actionTypes from '../actions/actionTypes';
 
 import {SessionActions} from '../actions/sessionA';
-
-export interface SessionState {
-    sessionId:string,
-    failure:number
-}
+import {SessionState} from '../types/sessionTypes';
 
 
 const initialState={

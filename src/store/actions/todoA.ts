@@ -42,7 +42,7 @@ export const getAllTodos:any = (id:string) =>{
     return (dispatch:Dispatch) =>{
         axios.get('http://localhost:9000/api/todos',{headers})
       .then((response: any) =>{
-
+        
         let getToDos=[];
             for(let key in response.data.todos){
                     getToDos.push({
@@ -50,7 +50,8 @@ export const getAllTodos:any = (id:string) =>{
                     id:key
                     })
             }
-            // console.log(getToDos);
+            console.log("[ACTION get all todos]");
+            console.log(getToDos);
             dispatch(getAllTodosSuccess(getToDos));
 
       })

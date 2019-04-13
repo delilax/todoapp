@@ -4,6 +4,7 @@ export const enum ToDoActionTypes{
 }
 
 export interface ToDoState{
+    [key:number]: number,
     readonly toDos: { 
         created: string; 
         id: string; 
@@ -11,5 +12,6 @@ export interface ToDoState{
         text: string; 
         updated: string; 
         urgency: number; 
-    }
+    },
+    haveToDos:boolean
 }

@@ -5,7 +5,8 @@ import * as actionCreator from '../store/actions/todoA';
 interface ViewProps{
     onGetAllTodos: typeof actionCreator.getAllTodos;
     isSessionId:string;
-    isToDos:any
+    isToDos:any,
+    isHaveToDos:boolean
 
   }
   
@@ -22,20 +23,23 @@ class ToDoList extends React.Component<ViewProps,ViewState> {
     }
 
     render(){
-        console.log(this.props.isToDos.id);
+
         return(
             <div>
-                {this.props.isToDos.id!=null ? <ul>
+                {this.props.isHaveToDos ? <ul>
                     {this.props.isToDos.map((todo:any) => (
                             <li>
                                     <div>{todo.text}</div>
+                                    <label>Urgency:</label>
                                     <div>{todo.urgency}</div>
+                                    <label>Created:</label>
                                     <div>{todo.created}</div>
+                                    <label>Updated:</label>
                                     <div>{todo.updated}</div>
                             </li>
                     ))} 
                     </ul>
-               :null}                        
+               :null}
             </div>
         );
     }
@@ -44,7 +48,8 @@ class ToDoList extends React.Component<ViewProps,ViewState> {
 const mapStateToProps = (state:any) =>{
     return {
         isSessionId: state.session.sessionId,
-        isToDos: state.todo.toDos
+        isToDos: state.todo.toDos,
+        isHaveToDos: state.todo.haveToDos
     };
 };
 

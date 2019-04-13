@@ -19,12 +19,8 @@ class App extends React.Component<props,any> {
   render() {
     return (
       <div className="App">
-         <header className="App-header">
-           <ToDoList />
+            <ToDoList />
             <ManageSessions />
-
-         </header>
-        
       </div>
     );
   }
