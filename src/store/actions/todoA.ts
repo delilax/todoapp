@@ -60,3 +60,33 @@ export const getAllTodos:any = (id:string) =>{
       })
     }
 }
+
+export const createToDo:any = (form:any,id:string) =>{
+
+  console.log(form,id);
+      let isCompletedBoolean=false
+      if(form.isCompleted=='true'){
+        isCompletedBoolean=true;
+      }
+
+      console.log(id);
+      const headers={
+        'sessionId': id
+      }
+
+      const body={
+        "text": form.text,
+        "isCompleted": isCompletedBoolean,
+        "urgency": Number(form.urgency)
+      }
+
+    return () =>{
+        axios.post('http://localhost:9000/api/todos',body,{headers})
+      .then((response: any) =>{
+            console.log(response);
+      })
+      .catch((error: any) =>{
+        console.log(error);
+      })
+    }
+}
