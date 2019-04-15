@@ -14,14 +14,13 @@ interface ViewProps {
 }
 
 interface ViewState {
-  theme:string
+  theme: string;
 }
 
 class ManageSessions extends React.Component<ViewProps, ViewState> {
-
-  state={
-    theme:"containerSession"
-  }
+  state = {
+    theme: "containerSession"
+  };
 
   componentDidMount = () => {
     this.props.onSession();
@@ -34,11 +33,31 @@ class ManageSessions extends React.Component<ViewProps, ViewState> {
   render() {
     return (
       <div className={this.state.theme}>
-
-      <button className="btnThemeBlack" onClick={()=>{this.setState({theme:"containerSession"})}}></button>
-      <button className="btnThemeRed" onClick={()=>{this.setState({theme:"containerSessionRed"})}}></button>
-      <button className="btnThemeGreen" onClick={()=>{this.setState({theme:"containerSessionGreen"})}}></button>
-      <button className="btnThemeBlue" onClick={()=>{this.setState({theme:"containerSessionBlue"})}}></button><br/>
+        <button
+          className="btnThemeBlack"
+          onClick={() => {
+            this.setState({ theme: "containerSession" });
+          }}
+        />
+        <button
+          className="btnThemeRed"
+          onClick={() => {
+            this.setState({ theme: "containerSessionRed" });
+          }}
+        />
+        <button
+          className="btnThemeGreen"
+          onClick={() => {
+            this.setState({ theme: "containerSessionGreen" });
+          }}
+        />
+        <button
+          className="btnThemeBlue"
+          onClick={() => {
+            this.setState({ theme: "containerSessionBlue" });
+          }}
+        />
+        <br />
 
         <button className="btnStartSession" onClick={this.props.onSession}>
           START SESSION
