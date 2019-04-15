@@ -17,7 +17,8 @@ interface ViewProps{
   
   interface ViewState{
         showAddTask:boolean,
-        showAlterTask:boolean
+        showAlterTask:boolean,
+        containText:string
   }
 
   
@@ -25,7 +26,8 @@ class ToDoList extends React.Component<ViewProps,ViewState> {
 
     state={
         showAddTask:false,
-        showAlterTask:false
+        showAlterTask:false,
+        containText:''
     }
 
     componentDidUpdate = () =>{
@@ -43,39 +45,49 @@ class ToDoList extends React.Component<ViewProps,ViewState> {
         this.setState({showAlterTask:!this.state.showAlterTask})
     }
 
+
+    onSearchHandler = (event: { target: { value: string; }; }) =>{
+        this.setState({containText:event.target.value});
+    }
+
     render(){
         console.log("[render]");
         console.log(this.props.isToDos);
         return(
             <div>
+                <input type="text" value={this.state.containText} onChange={this.onSearchHandler}/>
+
                 {this.props.isHaveToDos ? <ul>
-                    {this.props.isToDos.map((todo:any) => (
+
+                    {this.props.isToDos.map((todo:any) => todo.text.toUpperCase().includes(this.state.containText.toUpperCase()) ?
+                    
+                        (
                             <li key={todo.id}>
                                     
-                                    <div>{todo.text}</div>
-                                    <label>Urgency:</label>
-                                    <div>{todo.urgency}</div>
-                                    <label>Created:</label>
-                                    <div>
-                                        {todo.created.substr(8,2)}.
-                                        {todo.created.substr(5,2)}.
-                                        {todo.created.substr(0,4)} Time: 
-                                        {todo.created.substr(11,8)}
-                                    </div>
-                                    <label>Updated:</label>
-                                    <div>
-                                        {todo.updated.substr(8,2)}.
-                                        {todo.updated.substr(5,2)}.
-                                        {todo.updated.substr(0,4)} Time: 
-                                        {todo.updated.substr(11,8)}
-                                    </div>
-                                    <br/>
-                                    <button onClick={()=>this.showAltertaskInputHandler()}>Change task</button>
-                                    <button onClick={()=>this.props.onDeleteTodo(this.props.isSessionId,todo.id)}>Delete task</button>
-                                    {this.state.showAlterTask ? <AddAlterTask type="alter" idtodo={todo.id} /> : null}
-                            </li>
-                            
-                    ))} 
+                            <div>{todo.text}</div>
+                            <label>Urgency:</label>
+                            <div>{todo.urgency}</div>
+                            <label>Created:</label>
+                            <div>
+                                {todo.created.substr(8,2)}.
+                                {todo.created.substr(5,2)}.
+                                {todo.created.substr(0,4)} Time: 
+                                {todo.created.substr(11,8)}
+                            </div>
+                            <label>Updated:</label>
+                            <div>
+                                {todo.updated.substr(8,2)}.
+                                {todo.updated.substr(5,2)}.
+                                {todo.updated.substr(0,4)} Time: 
+                                {todo.updated.substr(11,8)}
+                            </div>
+                            <br/>
+                            <button onClick={()=>this.showAltertaskInputHandler()}>Change task</button>
+                            <button onClick={()=>this.props.onDeleteTodo(this.props.isSessionId,todo.id)}>Delete task</button>
+                            {this.state.showAlterTask ? <AddAlterTask type="alter" idtodo={todo.id} /> : null}
+                    </li>
+                        ) : null      
+                        )} 
                     </ul>
                :null}
             <button onClick={this.showAddtaskInputHandler}>Add task on the list</button>
