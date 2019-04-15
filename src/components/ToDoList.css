@@ -1,0 +1,140 @@
+.InputFilterToDos {
+    width:80%;
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 10px; 
+    -webkit-border-radius: 5px;
+    border-radius: 2px;
+    margin-top: 1rem;
+
+    background-color:rgba(240, 240, 240, 1);
+
+    -webkit-box-shadow: 0px 1px 5px #363636 inset;
+    -moz-box-shadow: 0px 1px 5px #363636 inset;
+    box-shadow: 0px 0px 5px #363636 inset;
+    padding: 5px;
+}
+
+.InputFilterToDos:focus{
+    outline: none;
+    background-color: rgba(240, 240, 240, 1);
+
+    -webkit-box-shadow: 0px 1px 2px #3d3d3d inset;
+    -moz-box-shadow: 0px 1px 2px #3d3d3d inset;
+    box-shadow: 0px 0px 2px #3d3d3d inset;
+}
+
+.containerListToDo{
+    width:99%;
+    text-align: center;
+    font-size: 1em;
+    border:1px solid rgb(236, 236, 236); 
+    -webkit-border-radius: 5px;
+    border-radius: 2px;
+    margin-top: 1rem;
+
+    background-color:rgba(240, 240, 240, 1);
+    list-style-type:none;
+}
+
+
+.btnAddTask {
+    background: #bababa;
+    background-image: -webkit-linear-gradient(top, #bababa, #aaaaaa);
+    background-image: -moz-linear-gradient(top, #bababa, #aaaaaa);
+    background-image: -ms-linear-gradient(top, #bababa, #aaaaaa);
+    background-image: -o-linear-gradient(top, #bababa, #aaaaaa);
+    background-image: linear-gradient(to bottom, #bababa, #aaaaaa);
+    -webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3px;
+    text-shadow: 1px 1px 2px #3d3d3d;
+    -webkit-box-shadow: 0px 1px 2px #3d3d3d;
+    -moz-box-shadow: 0px 1px 2px #3d3d3d;
+    box-shadow: 0px 1px 2px #3d3d3d;
+    color: #000000;
+
+    font-size: 1em;
+    margin:5px;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+  }
+
+  .btnAddTask:hover {
+    background: #9ac282;
+    background-image: -webkit-linear-gradient(top, #9ac282, #708a60);
+    background-image: -moz-linear-gradient(top, #9ac282, #708a60);
+    background-image: -ms-linear-gradient(top, #9ac282, #708a60);
+    background-image: -o-linear-gradient(top, #9ac282, #708a60);
+    background-image: linear-gradient(to bottom, #9ac282, #708a60);
+    text-decoration: none;
+  }
+
+
+  .btnChangeTask {
+    background: #bababa;
+    background-image: -webkit-linear-gradient(top, #bababa, #7a7a7a);
+    background-image: -moz-linear-gradient(top, #bababa, #7a7a7a);
+    background-image: -ms-linear-gradient(top, #bababa, #7a7a7a);
+    background-image: -o-linear-gradient(top, #bababa, #7a7a7a);
+    background-image: linear-gradient(to bottom, #bababa, #7a7a7a);
+    -webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3px;
+    text-shadow: 1px 1px 2px #3d3d3d;
+    -webkit-box-shadow: 0px 1px 2px #3d3d3d;
+    -moz-box-shadow: 0px 1px 2px #3d3d3d;
+    box-shadow: 0px 1px 2px #3d3d3d;
+    color: #000000;
+
+    font-size: 1em;
+
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+
+    margin:10px;
+  }
+  
+  .btnChangeTask:hover {
+ background: #87abc2;
+  background-image: -webkit-linear-gradient(top, #87abc2, #397b85);
+  background-image: -moz-linear-gradient(top, #87abc2, #397b85);
+  background-image: -ms-linear-gradient(top, #87abc2, #397b85);
+  background-image: -o-linear-gradient(top, #87abc2, #397b85);
+  background-image: linear-gradient(to bottom, #87abc2, #397b85);
+  text-decoration: none;
+  }
+
+
+  .btnDeleteTask {
+    background: #bababa;
+    background-image: -webkit-linear-gradient(top, #bababa, #7a7a7a);
+    background-image: -moz-linear-gradient(top, #bababa, #7a7a7a);
+    background-image: -ms-linear-gradient(top, #bababa, #7a7a7a);
+    background-image: -o-linear-gradient(top, #bababa, #7a7a7a);
+    background-image: linear-gradient(to bottom, #bababa, #7a7a7a);
+    -webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3px;
+    text-shadow: 1px 1px 2px #3d3d3d;
+    -webkit-box-shadow: 0px 1px 2px #3d3d3d;
+    -moz-box-shadow: 0px 1px 2px #3d3d3d;
+    box-shadow: 0px 1px 2px #3d3d3d;
+    color: #000000;
+
+    font-size: 1em;
+
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+  }
+  
+  .btnDeleteTask:hover {
+    background: #c28686;
+    background-image: -webkit-linear-gradient(top, #c28686, #8a6060);
+    background-image: -moz-linear-gradient(top, #c28686, #8a6060);
+    background-image: -ms-linear-gradient(top, #c28686, #8a6060);
+    background-image: -o-linear-gradient(top, #c28686, #8a6060);
+    background-image: linear-gradient(to bottom, #c28686, #8a6060);
+    text-decoration: none;
+  }
+  

@@ -1,9 +1,10 @@
-import * as React from 'react';
-import {connect} from 'react-redux';
-import * as actionCreator from '../store/actions/sessionA';
+import * as React from "react";
+import { connect } from "react-redux";
+import * as actionCreator from "../store/actions/sessionA";
 
+import "./ManageSession.css";
 
-interface ViewProps{
+interface ViewProps {
   onSession: typeof actionCreator.startSession;
   onDeleteSession: typeof actionCreator.deleteSession;
   onchangeSessionFailure: typeof actionCreator.changeSessionFailureNumber;
@@ -12,48 +13,86 @@ interface ViewProps{
   isFaulireRate: number;
 }
 
-interface ViewState{
+interface ViewState {
+  theme:string
 }
 
-class ManageSessions extends React.Component<ViewProps,ViewState> {
+class ManageSessions extends React.Component<ViewProps, ViewState> {
 
-  componentDidMount=()=>{
-    this.props.onSession();
+  state={
+    theme:"containerSession"
   }
-    
-    setFailureHandler = (event:any) =>{
-        this.props.onSetFailureRate(Number(event.target.value));
-    }
 
-    render() {
-        return (
-          <div>
-              <button onClick={this.props.onSession}>Start new session</button>
-              <button onClick={()=>this.props.onDeleteSession(this.props.isSessionId)}>Delete current session</button>
-              
-              <div>Enter current session failure: 0 - 100 </div>
-              <input type="number" name="failureRate" onChange={this.setFailureHandler} min="0" max="100"/>
-              <button onClick={()=>this.props.onchangeSessionFailure(this.props.isFaulireRate,this.props.isSessionId)}>Change current session failure</button>
-          </div>
-        );
-      }
-    }
-
-
-    const mapStateToProps = (state:any) =>{
-      return {
-          isSessionId: state.session.sessionId,
-          isFaulireRate: state.session.failure
-      };
+  componentDidMount = () => {
+    this.props.onSession();
   };
- 
- const mapDispatchToProps = (dispatch:any) => {
-      return{
-           onSession: () => dispatch(actionCreator.startSession()),
-           onDeleteSession: (id:any) =>dispatch(actionCreator.deleteSession(id)), 
-           onchangeSessionFailure: (errorRate:any,id:any) =>dispatch(actionCreator.changeSessionFailureNumber(errorRate,id)), 
-           onSetFailureRate: (failureNum: number) => dispatch(actionCreator.setFailureNumber(failureNum))
-      };
- };
- 
-export default connect(mapStateToProps,mapDispatchToProps) (ManageSessions);
+
+  setFailureHandler = (event: any) => {
+    this.props.onSetFailureRate(Number(event.target.value));
+  };
+
+  render() {
+    return (
+      <div className={this.state.theme}>
+
+      <button className="btnThemeBlack" onClick={()=>{this.setState({theme:"containerSession"})}}></button>
+      <button className="btnThemeRed" onClick={()=>{this.setState({theme:"containerSessionRed"})}}></button>
+      <button className="btnThemeGreen" onClick={()=>{this.setState({theme:"containerSessionGreen"})}}></button>
+      <button className="btnThemeBlue" onClick={()=>{this.setState({theme:"containerSessionBlue"})}}></button><br/>
+
+        <button className="btnStartSession" onClick={this.props.onSession}>
+          START SESSION
+        </button>
+        <button
+          className="btnDeleteSession"
+          onClick={() => this.props.onDeleteSession(this.props.isSessionId)}
+        >
+          DELETE SESSION
+        </button>
+        <br />
+        <input
+          className="InputElementChangeFailure"
+          type="number"
+          name="failureRate"
+          onChange={this.setFailureHandler}
+          min="0"
+          max="100"
+        />
+        <button
+          className="btnChnageSession"
+          onClick={() =>
+            this.props.onchangeSessionFailure(
+              this.props.isFaulireRate,
+              this.props.isSessionId
+            )
+          }
+        >
+          CHANGE SESSION FAILURE RATE
+        </button>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state: any) => {
+  return {
+    isSessionId: state.session.sessionId,
+    isFaulireRate: state.session.failure
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onSession: () => dispatch(actionCreator.startSession()),
+    onDeleteSession: (id: any) => dispatch(actionCreator.deleteSession(id)),
+    onchangeSessionFailure: (errorRate: any, id: any) =>
+      dispatch(actionCreator.changeSessionFailureNumber(errorRate, id)),
+    onSetFailureRate: (failureNum: number) =>
+      dispatch(actionCreator.setFailureNumber(failureNum))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ManageSessions);
