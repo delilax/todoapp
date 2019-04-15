@@ -127,11 +127,9 @@ export const changeSessionFailureNumberFailure = (id:any):IActionChangeErrorFail
 }
 
 export const changeSessionFailureNumber:any = (errorRate:number, id:string) =>{
-
   const headers={
     'sessionId': id
   }
-  
   const body={
     'errorRate': errorRate
   }
@@ -145,6 +143,6 @@ export const changeSessionFailureNumber:any = (errorRate:number, id:string) =>{
     .catch(error =>{
       console.log(error);
     })
-}
+  }
 }
 

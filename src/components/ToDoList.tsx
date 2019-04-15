@@ -2,44 +2,56 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import * as actionCreator from '../store/actions/todoA';
 
-import AddTask from './AddTask/AddTask';
+import AddTask from './AddTask/AddAlterTask';
+import AddAlterTask from './AddTask/AddAlterTask';
 
 interface ViewProps{
     onGetAllTodos: typeof actionCreator.getAllTodos;
+    onDeleteTodo: typeof actionCreator.deleteToDo;
     isSessionId:string;
     isToDos:any,
-    isHaveToDos:boolean
+    isHaveToDos:boolean,
+    isTestVar:boolean
 
   }
   
   interface ViewState{
-        showAddTask:boolean
+        showAddTask:boolean,
+        showAlterTask:boolean
   }
 
   
 class ToDoList extends React.Component<ViewProps,ViewState> {
 
     state={
-        showAddTask:false
-
+        showAddTask:false,
+        showAlterTask:false
     }
 
     componentDidUpdate = () =>{
-        console.log(this.props.isSessionId);
         this.props.onGetAllTodos(this.props.isSessionId);
+        console.log("[componentDidUpdate]");
+        console.log(this.props.isToDos);
     }
 
-    showtaskInputHandler:any  = () =>{
-        this.setState({showAddTask:true})
+    showAddtaskInputHandler:any  = () =>{
+        this.setState({showAddTask:!this.state.showAddTask})
+    }
+
+    showAltertaskInputHandler:any  = (key:any) =>{
+        console.log(key);
+        this.setState({showAlterTask:!this.state.showAlterTask})
     }
 
     render(){
-
+        console.log("[render]");
+        console.log(this.props.isToDos);
         return(
             <div>
                 {this.props.isHaveToDos ? <ul>
                     {this.props.isToDos.map((todo:any) => (
-                            <li>
+                            <li key={todo.id}>
+                                    
                                     <div>{todo.text}</div>
                                     <label>Urgency:</label>
                                     <div>{todo.urgency}</div>
@@ -58,12 +70,16 @@ class ToDoList extends React.Component<ViewProps,ViewState> {
                                         {todo.updated.substr(11,8)}
                                     </div>
                                     <br/>
+                                    <button onClick={()=>this.showAltertaskInputHandler()}>Change task</button>
+                                    <button onClick={()=>this.props.onDeleteTodo(this.props.isSessionId,todo.id)}>Delete task</button>
+                                    {this.state.showAlterTask ? <AddAlterTask type="alter" idtodo={todo.id} /> : null}
                             </li>
+                            
                     ))} 
                     </ul>
                :null}
-            <button onClick={this.showtaskInputHandler}>Add task on the list</button>
-            {this.state.showAddTask ? <AddTask /> : null}
+            <button onClick={this.showAddtaskInputHandler}>Add task on the list</button>
+            {this.state.showAddTask ? <AddAlterTask type="add" idtodo="" /> : null}
             </div>
         );
     }
@@ -73,13 +89,15 @@ const mapStateToProps = (state:any) =>{
     return {
         isSessionId: state.session.sessionId,
         isToDos: state.todo.toDos,
-        isHaveToDos: state.todo.haveToDos
+        isHaveToDos: state.todo.haveToDos,
+        isTestVar:state.todo.testVar
     };
 };
 
 const mapDispatchToProps = (dispatch:any) => {
     return{
         onGetAllTodos: (id:string) => dispatch(actionCreator.getAllTodos(id)),
+        onDeleteTodo: (idSession:string,idToDo:string) => dispatch(actionCreator.deleteToDo(idSession,idToDo))
     };
 };
 
